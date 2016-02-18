@@ -10,7 +10,14 @@ public class Reset : MonoBehaviour {
 	public GameObject target;
 	public bool found = false;
 	public AudioSource[] sounds;
+	float SFXVolume = 0.5f;
 	void Start () {
+		if (Options.option) {
+			for (int i = 0; i < sounds.Length; i++) {
+				sounds [i].volume = Options.option.musicVolume;
+			}
+			SFXVolume = Options.option.SFXVolume;
+		}
 	}
 	
 	// Update is called once per frame
@@ -32,6 +39,9 @@ public class Reset : MonoBehaviour {
 			else {
 				found = false;
 			}
+		}
+		if (!found) {
+			GetComponent<Controls>().enabled = true;
 		}
 	}
 	public void ChangeSound(uint _index)	{

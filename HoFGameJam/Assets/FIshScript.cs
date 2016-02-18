@@ -21,7 +21,7 @@ public class FIshScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		transform.rotation = Quaternion.LookRotation (-Camera.main.transform.forward, Camera.main.transform.up);
 	}
 	void OnDestroy(){
 		GameObject.Find ("Main Camera").GetComponent<Reset> ().ChangeSound (myIndex);
